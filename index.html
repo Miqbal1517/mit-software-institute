@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT Software Skills Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Variables */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #2ecc71;
+        }
+
+        /* Base Styles */
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-btn {
+            background: var(--secondary);
+            color: white;
+            margin-left: 15px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h2 {
+            color: white;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Courses */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .course-card p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .course-card i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+
+        .learn-more {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .learn-more:hover {
+            background: #2980b9;
+        }
+
+        /* Admission Process */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .step {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Form */
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Contact */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        /* Thank You Page */
+        .thank-you {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .thank-you i {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .thank-you h2 {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>MIT <span>Software Skills</span> Institute</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#process">Admission</a></li>
+                    <li><a href="#contact">Get in Touch</a></li>
+                    <li><a href="tel:03134045449" class="btn contact-btn">
+                        <i class="fas fa-phone-alt"></i> 0313-4045449
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Start Your IT Career With Us</h2>
+            <p>Quality education at affordable prices with flexible payment options. Join our institute to gain practical skills and kickstart your career in technology.</p>
+            <a href="#admission" class="btn">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses" class="section-courses">
+        <div class="container">
+            <h2>Our Courses</h2>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <h3>Web Designing</h3>
+                    <p><i class="fas fa-clock"></i> Duration: 4 months</p>
+                    <p><i class="fas fa-money-bill-wave"></i> Total Fee: 25,000 PKR</p>
+                    <p><i class="fas fa-file-signature"></i> Registration: 1,000 PKR</p>
+                    <button class="learn-more" data-course="web-designing">Learn More</button>
+                </div>
+                
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <h3>Web Development (MERN Stack)</h3>
+                    <p><i class="fas fa-clock"></i> Duration: 6 months</p>
+                    <p><i class="fas fa-money-bill-wave"></i> Total Fee: 40,000 PKR</p>
+                    <p><i class="fas fa-file-signature"></i> Registration: 1,000 PKR</p>
+                    <button class="learn-more" data-course="mern-stack">Learn More</button>
+                </div>
+                
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <h3>HTML & CSS Crash Course</h3>
+                    <p><i class="fas fa-clock"></i> Duration: 2 months</p>
+                    <p><i class="fas fa-money-bill-wave"></i> Total Fee: 10,000 PKR</p>
+                    <p><i class="fas fa-file-signature"></i> Registration: 1,000 PKR</p>
+                    <button class="learn-more" data-course="html-css">Learn More</button>
+                </div>
+                
+                <!-- Course 4 -->
+                <div class="course-card">
+                    <h3>C/C++ Programming</h3>
+                    <p><i class="fas fa-clock"></i> Duration: 3 months</p>
+                    <p><i class="fas fa-money-bill-wave"></i> Total Fee: 12,000 PKR</p>
+                    <p><i class="fas fa-file-signature"></i> Registration: 1,000 PKR</p>
+                    <button class="learn-more" data-course="cpp">Learn More</button>
+                </div>
+                
+                <!-- Course 5 -->
+                <div class="course-card">
+                    <h3>Python Programming</h3>
+                    <p><i class="fas fa-clock"></i> Duration: 3 months</p>
+                    <p><i class="fas fa-money-bill-wave"></i> Total Fee: 15,000 PKR</p>
+                    <p><i class="fas fa-file-signature"></i> Registration: 1,000 PKR</p>
+                    <button class="learn-more" data-course="python">Learn More</button>
+                </div>
+                
+                <!-- Course 6 -->
+                <div class="course-card">
+                    <h3>Kids Coding</h3>
+                    <p><i class="fas fa-clock"></i> Duration: 2 months</p>
+                    <p><i class="fas fa-money-bill-wave"></i> Total Fee: 10,000 PKR</p>
+                    <p><i class="fas fa-file-signature"></i> Registration: 1,000 PKR</p>
+                    <button class="learn-more" data-course="kids-coding">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Process -->
+    <section id="process" class="section-process">
+        <div class="container">
+            <h2>Admission Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Application</h3>
+                    <p>Fill out the online admission form with your personal and educational details.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Verification</h3>
+                    <p>Our team will verify your information and contact you for confirmation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Registration</h3>
+                    <p>Pay the registration fee to secure your seat in the course.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Orientation</h3>
+                    <p>Attend the orientation session and begin your classes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Form -->
+    <section id="admission" class="section-form">
+        <div class="container">
+            <h2>Admission Form</h2>
+            <div class="form-container">
+                <form id="admissionForm" action="https://formsubmit.co/institutemit06@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Admission - MIT Software Skills Institute">
+                    <input type="hidden" name="_next" value="thank-you.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <h3>Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="Last Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fatherName">Father's Name</label>
+                            <input type="text" id="fatherName" name="Father's Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cnic">CNIC/B-Form Number</label>
+                            <input type="text" id="cnic" name="CNIC/B-Form" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="Phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Full Address</label>
+                            <input type="text" id="address" name="Address" required>
+                        </div>
+                    </div>
+                    
+                    <h3>Educational Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="qualification">Highest Qualification</label>
+                            <select id="qualification" name="Qualification" required>
+                                <option value="">-- Select --</option>
+                                <option value="Matric">Matric</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Bachelor">Bachelor</option>
+                                <option value="Master">Master</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="institute">Institute Name</label>
+                            <input type="text" id="institute" name="Institute" required>
+                        </div>
+                    </div>
+                    
+                    <h3>Course Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course">Select Course</label>
+                            <select id="course" name="Course" required>
+                                <option value="">-- Select Course --</option>
+                                <option value="Web Designing">Web Designing (25,000 PKR)</option>
+                                <option value="Web Development (MERN Stack)">Web Development - MERN Stack (40,000 PKR)</option>
+                                <option value="HTML & CSS Crash Course">HTML & CSS Crash Course (10,000 PKR)</option>
+                                <option value="C/C++ Programming">C/C++ Programming (12,000 PKR)</option>
+                                <option value="Python Programming">Python Programming (15,000 PKR)</option>
+                                <option value="Kids Coding">Kids Coding (10,000 PKR)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment">Payment Plan</label>
+                            <select id="payment" name="Payment Plan" required>
+                                <option value="">-- Select --</option>
+                                <option value="Full Payment">Full Payment</option>
+                                <option value="2 Installments">2 Installments</option>
+                                <option value="3 Installments">3 Installments</option>
+                                <option value="4 Installments">4 Installments</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Why do you want to join this course? (Optional)</label>
+                        <textarea id="message" name="Message"></textarea>
+                    </div>
+                    
+                    <div class="submit-btn">
+                        <button type="submit" class="btn">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get in Touch -->
+    <section id="contact" class="section-contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p>0313-4045449</p>
+                    <a href="https://wa.me/923134045449" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>institutemit06@gmail.com</p>
+                    <a href="mailto:institutemit06@gmail.com" class="btn">Send Email</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>MIT Software Skills Institute, Saith Mahboob Street Chongi#03 Farooqabad,Shiekhupura, Pakistan</p>
+                    <a href="#" class="btn">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#process">Admission</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <p class="copyright">&copy; 2019 MIT Software Skills Institute. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Thank You Page (hidden by default) -->
+    <div id="thankYouPage" style="display:none;">
+        <section class="thank-you">
+            <div class="container">
+                <i class="fas fa-check-circle"></i>
+                <h2>Thank You for Your Application!</h2>
+                <p>We have received your admission form successfully. Our team will contact you shortly to confirm your registration and discuss next steps.</p>
+                <p>For immediate assistance, please call us at <strong>0313-4045449</strong> or email <strong>institutemit06@gmail.com</strong></p>
+                <a href="#" id="backToHome" class="btn">Back to Home</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Course outlines data
+        const courseOutlines = {
+            'web-designing': {
+                title: 'Web Designing Course Outline',
+                content: `
+                    <h3>Web Designing (4 Months)</h3>
+                    <p>This comprehensive course covers all aspects of modern web design:</p>
+                    <ul>
+                        <li>Introduction to Web Technologies</li>
+                        <li>HTML5 Fundamentals</li>
+                        <li>CSS3 Styling and Layouts</li>
+                        <li>Responsive Design with Media Queries</li>
+                        <li>Bootstrap Framework</li>
+                        <li>JavaScript Basics</li>
+                        <li>jQuery Library</li>
+                        <li>UI/UX Design Principles</li>
+                        <li>Adobe Photoshop for Web Design</li>
+                        <li>Website Deployment</li>
+                        <li>Final Project</li>
+                    </ul>
+                    <p><strong>Fee Structure:</strong></p>
+                    <ul>
+                        <li>Registration Fee: 1,000 PKR (Non-refundable)</li>
+                        <li>Total Course Fee: 25,000 PKR</li>
+                        <li>Installment Options Available</li>
+                    </ul>
+                `
+            },
+            'mern-stack': {
+                title: 'Web Development (MERN Stack) Course Outline',
+                content: `
+                    <h3>Web Development - MERN Stack (6 Months)</h3>
+                    <p>Become a full-stack developer with this intensive program:</p>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                        <li>React.js Fundamentals</li>
+                        <li>React Hooks and Context API</li>
+                        <li>Redux for State Management</li>
+                        <li>Node.js and Express.js</li>
+                        <li>MongoDB Database</li>
+                        <li>RESTful API Development</li>
+                        <li>Authentication with JWT</li>
+                        <li>Deployment to Heroku/Netlify</li>
+                        <li>Git and GitHub</li>
+                        <li>Final Capstone Project</li>
+                    </ul>
+                    <p><strong>Fee Structure:</strong></p>
+                    <ul>
+                        <li>Registration Fee: 1,000 PKR (Non-refundable)</li>
+                        <li>Total Course Fee: 40,000 PKR</li>
+                        <li>Installment Options Available</li>
+                    </ul>
+                `
+            },
+            'html-css': {
+                title: 'HTML & CSS Crash Course Outline',
+                content: `
+                    <h3>HTML & CSS Crash Course (2 Months)</h3>
+                    <p>Fast-track your web development skills:</p>
+                    <ul>
+                        <li>HTML5 Structure and Semantics</li>
+                        <li>CSS3 Selectors and Properties</li>
+                        <li>Box Model and Layout Techniques</li>
+                        <li>Flexbox and CSS Grid</li>
+                        <li>Responsive Design Basics</li>
+                        <li>CSS Transitions and Animations</li>
+                        <li>Basic JavaScript Integration</li>
+                        <li>Building a Portfolio Website</li>
+                    </ul>
+                    <p><strong>Fee Structure:</strong></p>
+                    <ul>
+                        <li>Registration Fee: 1,000 PKR (Non-refundable)</li>
+                        <li>Total Course Fee: 10,000 PKR</li>
+                        <li>Installment Options Available</li>
+                    </ul>
+                `
+            },
+            'cpp': {
+                title: 'C/C++ Programming Course Outline',
+                content: `
+                    <h3>C/C++ Programming (3 Months)</h3>
+                    <p>Master the fundamentals of programming:</p>
+                    <ul>
+                        <li>Introduction to Programming Concepts</li>
+                        <li>C Language Fundamentals</li>
+                        <li>Control Structures and Loops</li>
+                        <li>Functions and Recursion</li>
+                        <li>Arrays and Pointers</li>
+                        <li>Structures and Unions</li>
+                        <li>File Handling</li>
+                        <li>Introduction to C++</li>
+                        <li>Object-Oriented Programming</li>
+                        <li>Data Structures Basics</li>
+                        <li>Final Project</li>
+                    </ul>
+                    <p><strong>Fee Structure:</strong></p>
+                    <ul>
+                        <li>Registration Fee: 1,000 PKR (Non-refundable)</li>
+                        <li>Total Course Fee: 12,000 PKR</li>
+                        <li>Installment Options Available</li>
+                    </ul>
+                `
+            },
+            'python': {
+                title: 'Python Programming Course Outline',
+                content: `
+                    <h3>Python Programming (3 Months)</h3>
+                    <p>Learn one of the most versatile programming languages:</p>
+                    <ul>
+                        <li>Python Syntax and Basics</li>
+                        <li>Data Types and Variables</li>
+                        <li>Control Flow and Loops</li>
+                        <li>Functions and Modules</li>
+                        <li>File Handling</li>
+                        <li>Object-Oriented Programming</li>
+                        <li>Error Handling</li>
+                        <li>Working with Libraries</li>
+                        <li>Introduction to Django/Flask</li>
+                        <li>Data Analysis Basics</li>
+                        <li>Final Project</li>
+                    </ul>
+                    <p><strong>Fee Structure:</strong></p>
+                    <ul>
+                        <li>Registration Fee: 1,000 PKR (Non-refundable)</li>
+                        <li>Total Course Fee: 15,000 PKR</li>
+                        <li>Installment Options Available</li>
+                    </ul>
+                `
+            },
+            'kids-coding': {
+                title: 'Kids Coding Course Outline',
+                content: `
+                    <h3>Kids Coding (2 Months)</h3>
+                    <p>Fun introduction to programming for children:</p>
+                    <ul>
+                        <li>Introduction to Computational Thinking</li>
+                        <li>Scratch Programming</li>
+                        <li>Blockly Games</li>
+                        <li>Basic HTML/CSS for Kids</li>
+                        <li>Simple Game Development</li>
+                        <li>Animation Basics</li>
+                        <li>Interactive Storytelling</li>
+                        <li>Introduction to Robotics Concepts</li>
+                        <li>Final Creative Project</li>
+                    </ul>
+                    <p><strong>Fee Structure:</strong></p>
+                    <ul>
+                        <li>Registration Fee: 1,000 PKR (Non-refundable)</li>
+                        <li>Total Course Fee: 10,000 PKR</li>
+                        <li>Installment Options Available</li>
+                    </ul>
+                `
+            }
+        };
+
+        // DOM Elements
+        const modal = document.getElementById('courseModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.querySelector('.close-modal');
+        const learnMoreBtns = document.querySelectorAll('.learn-more');
+        const thankYouPage = document.getElementById('thankYouPage');
+        const mainContent = document.querySelector('body > :not(#thankYouPage)');
+        const backToHomeBtn = document.getElementById('backToHome');
+
+        // Check if we're coming back from form submission
+        if (window.location.search.includes('form_submitted=true')) {
+            showThankYouPage();
+        }
+
+        // Learn More buttons
+        learnMoreBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const courseId = this.getAttribute('data-course');
+                const course = courseOutlines[courseId];
+                
+                modalContent.innerHTML = `
+                    <h2>${course.title}</h2>
+                    ${course.content}
+                `;
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form submission
+        const form = document.getElementById('admissionForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Form validation
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = 'red';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '#ddd';
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Submit form via FormSubmit
+                this.submit();
+            });
+        }
+
+        // Back to home from thank you page
+        backToHomeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        function showThankYouPage() {
+            mainContent.style.display = 'none';
+            thankYouPage.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
